@@ -12,6 +12,7 @@
     <script src="scripts/d3.v2.js"></script>
     <script src="scripts/d3_func.js"></script>
     <script src="scripts/js-yaml.min.js"></script>
+    <script src="widgets/widget.js"></script>
     <script src="widgets/gauge.js"></script>
     <script src="widgets/line_graph.js"></script>
     <script src="widgets/text_widget.js"></script>
@@ -108,7 +109,7 @@
         oldTime = newTime;
         
       } catch (e) {
-        console.log('This doesn\'t look like a valid JSON: ', message.data);
+        console.log(e.toString());
         return;
       }
     };
