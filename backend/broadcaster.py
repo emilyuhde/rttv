@@ -10,7 +10,7 @@ class Broadcaster(object):
     def get_instance():
         if not Broadcaster._instance:
             Broadcaster._instance = Broadcaster()
-        #return singleton
+        return _instance
     
     @staticmethod
     def broadcast(data):
