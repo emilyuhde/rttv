@@ -3,6 +3,7 @@ from config import *
 from averaging import *
 from parsing import *
 from back_to_front import *
+from broadcast import *
 
 # to be modularized
 
@@ -54,15 +55,15 @@ def send_data_to_front_end(message_id):
             debug.print_char('>') # sending JSON data to front-end
 	
         if (no_packet_received()):
-            send_json_obj(json_ERRO('ERRO', 0, "no packet revceived"))
+            broadcast(json_ERRO('ERRO', 0, "no packet revceived"))
             # print "No packet received"
         else:
-            send_json_obj(check_before_send(parse_data.ADIS_mess, 'ADIS'))
-            send_json_obj(parse_data.last_GPS_mess)
-            send_json_obj(parse_data.last_MPL3_mess)
-            send_json_obj(parse_data.last_MPU9_mess)
-            send_json_obj(check_before_send(parse_data.last_ROLL_mess, 'ROLL'))
-        send_json_obj(check_before_send(parse_data.packet_analyze, 'Analyze'))
+            broadcast(check_before_send(parse_data.ADIS_mess, 'ADIS'))
+            broadcast(parse_data.last_GPS_mess)
+            broadcast(parse_data.last_MPL3_mess)
+            broadcast(parse_data.last_MPU9_mess)
+            broadcast(check_before_send(parse_data.last_ROLL_mess, 'ROLL'))
+        broadcast(check_before_send(parse_data.packet_analyze, 'Analyze'))
         init_data()
     send_data_to_front_end.startTime = datetime.datetime.now()            
 
